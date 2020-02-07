@@ -1,0 +1,331 @@
+<h1>Cups</h1>
+<mat-card>
+  <form [formGroup]="activationForm">
+    <button mat-raised-button color="primary" type="button" (click)="onSps()"> SPS </button>
+    <button mat-raised-button color="primary" type="button"> Percentages </button>
+    <button mat-raised-button color="primary" type="button"> All </button>
+    <button mat-raised-button color="primary" type="button" (click)="onConcert()"> Concert </button>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Activation" formControlName="cups" required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="All readings" formControlName="all_lects" required></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Select cnc" formControlName="cnmc" required></textarea>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="P P1" formControlName="powerp1" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="P P2" formControlName="powerp2" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="P P3" formControlName="powerp3" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="P P4" formControlName="powerp4" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="P P5" formControlName="powerp5" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="P P6" formControlName="powerp6" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P1" formControlName="energy_prp1" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P2" formControlName="energy_prp2" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P3" formControlName="energy_prp3" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P4" formControlName="energy_prp4" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P5" formControlName="energy_prp5" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Pr P6" formControlName="energy_prp6" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="A Ct" formControlName="alq_diario" required>
+    </mat-form-field>
+    <div class="checkbox-container">
+      <mat-checkbox color="primary" formControlName="react_sips">Reactive</mat-checkbox>
+      <mat-checkbox color="primary" formControlName="incremento">Increment</mat-checkbox>
+    </div>
+  </form>
+</mat-card>
+
+<div [hidden]="!spsFlag">
+  <h2>SIPS</h2>
+  <table mat-table [dataSource]="sipsData" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of sipsDisplayColumns">
+      <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: sipsDisplayColumns;"></tr>
+  </table>
+
+  <h2>Titular</h2>
+  <table mat-table [dataSource]="titularData" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of titularDisplayColumns">
+      <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: titularDisplayColumns;"></tr>
+  </table>
+
+  <h2>Estudio</h2>
+  <table mat-table [dataSource]="estudioData" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of estudioDisplayColumns">
+      <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: estudioDisplayColumns;"></tr>
+  </table>
+
+  <h2>Datos</h2>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="datosTable" #datosTableSort="matSort" matSort>
+
+      <!-- Fecha Inicio Column -->
+      <ng-container matColumnDef="fechainiciomesconsumo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicio </th>
+        <td mat-cell *matCellDef="let row"> {{row.fechainiciomesconsumo}} </td>
+      </ng-container>
+
+      <!-- Fecha Fin Column -->
+      <ng-container matColumnDef="fechafinmesconsumo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Fin </th>
+        <td mat-cell *matCellDef="let row"> {{row.fechafinmesconsumo}} </td>
+      </ng-container>
+
+      <!-- Dias Column -->
+      <ng-container matColumnDef="diff">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dias </th>
+        <td mat-cell *matCellDef="let row"> {{row.diff }} </td>
+      </ng-container>
+
+      <!-- Tarifa Column -->
+      <ng-container matColumnDef="codigotarifaatr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarifa </th>
+        <td mat-cell *matCellDef="let row"> {{row.codigotarifaatr}} </td>
+      </ng-container>
+
+      <!-- Consumo P1 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P1 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp1}} </td>
+      </ng-container>
+
+      <!-- Consumo P2 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P2 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp2}} </td>
+      </ng-container>
+
+      <!-- Consumo P3 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp3">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P3 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp3}} </td>
+      </ng-container>
+
+      <!-- Consumo P4 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp4">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P4 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp4}} </td>
+      </ng-container>
+
+      <!-- Consumo P5 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp5">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P5 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp5}} </td>
+      </ng-container>
+
+      <!-- Consumo P6 Column -->
+      <ng-container matColumnDef="consumoenergiaactivaenwhp6">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Consumo P6 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiaactivaenwhp6}} </td>
+      </ng-container>
+
+      <!-- Maximetro P1 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P1 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp1}} </td>
+      </ng-container>
+
+      <!-- Maximetro P2 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P2 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp2}} </td>
+      </ng-container>
+
+      <!-- Maximetro P3 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp3">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P3 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp3}} </td>
+      </ng-container>
+
+      <!-- Maximetro P4 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp4">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P4 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp4}} </td>
+      </ng-container>
+
+      <!-- Maximetro P5 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp5">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P5 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp5}} </td>
+      </ng-container>
+
+      <!-- Maximetro P6 Column -->
+      <ng-container matColumnDef="potenciademandadaenwp6">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maximetro P6 </th>
+        <td mat-cell *matCellDef="let row"> {{row.potenciademandadaenwp6}} </td>
+      </ng-container>
+
+      <!-- Reactiva P1 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P1 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp1}} </td>
+      </ng-container>
+
+      <!-- Reactiva P2 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P2 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp2}} </td>
+      </ng-container>
+
+      <!-- Reactiva P3 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp3">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P3 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp3}} </td>
+      </ng-container>
+
+      <!-- Reactiva P4 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp4">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P4 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp4}} </td>
+      </ng-container>
+
+      <!-- Reactiva P5 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp5">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P5 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp5}} </td>
+      </ng-container>
+
+      <!-- Reactiva P6 Column -->
+      <ng-container matColumnDef="consumoenergiareactivaenvarhp6">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva P6 </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumoenergiareactivaenvarhp6}} </td>
+      </ng-container>
+
+      <!-- Reactiva Column -->
+      <ng-container matColumnDef="reactiva">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva </th>
+        <td mat-cell *matCellDef="let row"> {{row.reactiva}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="datosDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: datosDisplayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator #datosTablePaginator="matPaginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+  <h2>Resumen</h2>
+  <table mat-table [dataSource]="resumenData" class="mat-elevation-z8">
+    <ng-container [matColumnDef]="column" *ngFor="let column of resumenDisplayColumns">
+      <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element[column]}} </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: resumenDisplayColumns;"></tr>
+  </table>
+</div>
+
+<div [hidden]="!concertFlag">
+  <h2>Concert</h2>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="concertTable" #concertTableSort="matSort" matSort>
+
+      <!-- Base Column -->
+      <ng-container matColumnDef="base">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Base </th>
+        <td mat-cell *matCellDef="let row"> {{row.base}} </td>
+      </ng-container>
+
+      <!-- Potencia Column -->
+      <ng-container matColumnDef="potencia">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Potencia </th>
+        <td mat-cell *matCellDef="let row"> {{row.potencia}} </td>
+      </ng-container>
+
+      <!-- Activo Column -->
+      <ng-container matColumnDef="activa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Activo </th>
+        <td mat-cell *matCellDef="let row"> {{row.activa}} </td>
+      </ng-container>
+
+      <!-- Reactiva Column -->
+      <ng-container matColumnDef="reactiva">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Reactiva </th>
+        <td mat-cell *matCellDef="let row"> {{row.reactiva}} </td>
+      </ng-container>
+
+      <!-- IE Column -->
+      <ng-container matColumnDef="ie">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> IE </th>
+        <td mat-cell *matCellDef="let row"> {{row.ie}} </td>
+      </ng-container>
+
+      <!-- Ostros Column -->
+      <ng-container matColumnDef="otros">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ostros </th>
+        <td mat-cell *matCellDef="let row"> {{row.otros}} </td>
+      </ng-container>
+
+      <!-- Alquiler Column -->
+      <ng-container matColumnDef="alquiler">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Alquiler </th>
+        <td mat-cell *matCellDef="let row"> {{row.alquiler}} </td>
+      </ng-container>
+
+      <!-- AlqDirario Column -->
+      <ng-container matColumnDef="alq_diario">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> AlqDirario </th>
+        <td mat-cell *matCellDef="let row"> {{row.alq_diario}} </td>
+      </ng-container>
+
+      <!-- Dias Column -->
+      <ng-container matColumnDef="dias">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dias </th>
+        <td mat-cell *matCellDef="let row"> {{row.dias}} </td>
+      </ng-container>
+
+      <!-- Desde Column -->
+      <ng-container matColumnDef="desde">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Desde </th>
+        <td mat-cell *matCellDef="let row"> {{row.desde | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <!-- Hasta Column -->
+      <ng-container matColumnDef="hasta">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Hasta </th>
+        <td mat-cell *matCellDef="let row"> {{row.hasta | date: 'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="concertDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: concertDisplayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator #concertTablePaginator="matPaginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

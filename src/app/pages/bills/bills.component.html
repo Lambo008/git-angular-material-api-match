@@ -1,0 +1,88 @@
+<h1>Check bills</h1>
+<mat-card>
+  <form [formGroup]="billForm">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Document" formControlName="document" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Cups" formControlName="cups" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Choose a date" [satDatepicker]="picker2" formControlName="date">
+        <sat-datepicker #picker2 [rangeMode]="true" [closeAfterSelection]="true">
+        </sat-datepicker>
+        <sat-datepicker-toggle matSuffix [for]="picker2" ></sat-datepicker-toggle>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" required>
+          <mat-option *ngFor="let type of types" [value]="type.id">
+            {{type.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="onSend(billForm)" type="button">Send</button>
+  </form>
+</mat-card>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+      <td mat-cell *matCellDef="let row"> {{row.code}} </td>
+    </ng-container>
+
+    <!-- CUPS ID Column -->
+    <ng-container matColumnDef="cups_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CUPS ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.cups_id}} </td>
+    </ng-container>
+
+    <!-- CUPS Column -->
+    <ng-container matColumnDef="cups">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CUPS </th>
+      <td mat-cell *matCellDef="let row"> {{row.cups}} </td>
+    </ng-container>
+
+    <!-- CIF Column -->
+    <ng-container matColumnDef="customer_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CIF </th>
+      <td mat-cell *matCellDef="let row"> {{row.customer_id}} </td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="bcustomer_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let row"> {{row.bcustomer_id}} </td>
+    </ng-container>
+
+    <!-- Inicio Column -->
+    <ng-container matColumnDef="ini">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Inicio </th>
+      <td mat-cell *matCellDef="let row"> {{row.ini}} </td>
+    </ng-container>
+
+    <!-- Fin Column -->
+    <ng-container matColumnDef="fin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fin </th>
+      <td mat-cell *matCellDef="let row"> {{row.fin}} </td>
+    </ng-container>
+
+    <!-- Fec.Factura Column -->
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fec.Factura </th>
+      <td mat-cell *matCellDef="let row"> {{row.created}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+

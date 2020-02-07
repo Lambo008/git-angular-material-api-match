@@ -1,0 +1,100 @@
+<h1>Perdidas</h1>
+<mat-card>
+  <form [formGroup]="selectForm">
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Ano</mat-label>
+        <mat-select formControlName="ano" required>
+          <mat-option *ngFor="let element of anoSelect" [value]="element.id">
+            {{element.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mes</mat-label>
+        <mat-select formControlName="mes" required>
+          <mat-option *ngFor="let element of mesSelect" [value]="element.id">
+            {{element.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-card>
+
+<form [formGroup]="form" autocomplete="off">
+  <ng-container formArrayName="loose">
+    <mat-table class="mat-elevation-z8" [dataSource]="loose.controls">
+
+      <!-- Tarifa Column -->
+      <ng-container matColumnDef="rates_list">
+        <mat-header-cell *matHeaderCellDef> Tarifa </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.get('rates_list').value}} </mat-cell>
+      </ng-container>
+
+      <!-- P1 Column -->
+      <ng-container matColumnDef="losses_p1">
+        <mat-header-cell *matHeaderCellDef> P1 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p1" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P2 Column -->
+      <ng-container matColumnDef="losses_p2">
+        <mat-header-cell *matHeaderCellDef> P2 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p2" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P3 Column -->
+      <ng-container matColumnDef="losses_p3">
+        <mat-header-cell *matHeaderCellDef> P3 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p3" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P4 Column -->
+      <ng-container matColumnDef="losses_p4">
+        <mat-header-cell *matHeaderCellDef> P4 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p4" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P5 Column -->
+      <ng-container matColumnDef="losses_p5">
+        <mat-header-cell *matHeaderCellDef> P5 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p5" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P6 Column -->
+      <ng-container matColumnDef="losses_p6">
+        <mat-header-cell *matHeaderCellDef> P6 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="losses_p6" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </ng-container>
+</form>
+<button mat-raised-button color="primary" type="button" (click)="onGuardar()">Guardar</button>

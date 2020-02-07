@@ -1,0 +1,167 @@
+<h1>Transferencias</h1>
+<mat-card>
+  <form [formGroup]="transferenciasForm">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Busquesda" formControlName="busquesda" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enviados</mat-label>
+        <mat-select formControlName="enviados">
+          <mat-option *ngFor="let element of envidosSelect" [value]="element.value">
+            {{element.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Devueltos</mat-label>
+        <mat-select formControlName="devueltos">
+          <mat-option *ngFor="let element of devueltosSelect" [value]="element.value">
+            {{element.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Especial</mat-label>
+        <mat-select formControlName="especial">
+          <mat-option *ngFor="let element of especialSelect" [value]="element.value">
+            {{element.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Activo</mat-label>
+        <mat-select formControlName="activo">
+          <mat-option *ngFor="let element of activoSelect" [value]="element.value">
+            {{element.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="fecha" [matDatepicker]="picker1" placeholder="Fecha prevista">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <mat-label>Filtrar por banco</mat-label>
+        <mat-radio-group formControlName="filtrar">
+          <mat-radio-button color="primary" *ngFor="let element of filtrarRadio" [value]="element.value">
+            {{element.label}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-form-field>
+        <input matInput formControlName="cargo" [matDatepicker]="picker" placeholder="Fecha de cargo">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <mat-label>Seleccionar banco</mat-label>
+        <mat-radio-group formControlName="seleccionar">
+          <mat-radio-button color="primary" *ngFor="let element of seleccionarRadio" [value]="element.value">
+            {{element.label}}</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" type="button" (click)="onBuscar()">Buscar</button>
+  </form>
+</mat-card>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="tableSouce" matSort>
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Num Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> Num </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- CIF Column -->
+    <ng-container matColumnDef="document">
+      <th mat-header-cell *matHeaderCellDef> CIF </th>
+      <td mat-cell *matCellDef="let element"> {{element.document}} </td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+    </ng-container>
+
+    <!-- Banco Column -->
+    <ng-container matColumnDef="bank">
+      <th mat-header-cell *matHeaderCellDef> Banco </th>
+      <td mat-cell *matCellDef="let element"> {{element.bank}} </td>
+    </ng-container>
+
+    <!-- Iban Column -->
+    <ng-container matColumnDef="iban">
+      <th mat-header-cell *matHeaderCellDef> IBAN </th>
+      <td mat-cell *matCellDef="let element"> {{element.iban}} </td>
+    </ng-container>
+
+    <!-- Cuenta Column -->
+    <ng-container matColumnDef="count_id">
+      <th mat-header-cell *matHeaderCellDef> Cuenta </th>
+      <td mat-cell *matCellDef="let element"> {{element.count_id}} </td>
+    </ng-container>
+
+    <!-- Factura Column -->
+    <ng-container matColumnDef="bills">
+      <th mat-header-cell *matHeaderCellDef> Factura </th>
+      <td mat-cell *matCellDef="let element"> {{element.bills}} </td>
+    </ng-container>
+
+    <!-- Importe Column -->
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef> Importe </th>
+      <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- Dev Column -->
+    <ng-container matColumnDef="return_times">
+      <th mat-header-cell *matHeaderCellDef> Dev </th>
+      <td mat-cell *matCellDef="let element"> {{element.return_times}} </td>
+    </ng-container>
+
+    <!-- Esp Column -->
+    <ng-container matColumnDef="bank_id">
+      <th mat-header-cell *matHeaderCellDef> Esp </th>
+      <td mat-cell *matCellDef="let element"> {{element.bank_id}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

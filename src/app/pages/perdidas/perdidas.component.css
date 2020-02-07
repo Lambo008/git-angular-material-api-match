@@ -1,0 +1,17 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.mat-elevation-z8 {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+

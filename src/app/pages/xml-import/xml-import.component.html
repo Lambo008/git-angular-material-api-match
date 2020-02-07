@@ -1,0 +1,15 @@
+<h1>XML Reader</h1>
+<mat-card *ngIf="!response.color">
+  <form>
+    <button mat-stroked-button color="primary" type="button" (click)="filePicker.click()"> Upload file </button>
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader" #filePicker>
+    <button mat-raised-button color="primary" type="button" (click)="uploader.uploadAll()"
+      [disabled]="!uploader.getNotUploadedItems().length"> Next </button>
+  </form>
+</mat-card>
+<mat-card *ngIf="response.color">
+  <div class="example-container">
+    <strong [style.color]="response.color">{{ response.message }}</strong>
+  </div>
+  <button mat-raised-button color="primary" (click)="onReset()">Return</button>
+</mat-card>

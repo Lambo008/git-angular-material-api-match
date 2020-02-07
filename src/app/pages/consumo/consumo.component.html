@@ -1,0 +1,124 @@
+<h1>Precios por consumo</h1>
+<mat-card>
+  <h2>Busquesda</h2>
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Busqueda</mat-label>
+      <mat-select [(value)]="priceSelect" required>
+        <mat-option *ngFor="let element of prices" [value]="element.id">
+          {{element.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="button" (click)="onBusquesda()">Busqueda</button>
+</mat-card>
+
+<div [hidden]="hiddenTable">
+  <form [formGroup]="form" autocomplete="off">
+    <ng-container formArrayName="price">
+      <mat-table class="mat-elevation-z8" [dataSource]="price.controls">
+
+        <!-- Tarifa Column -->
+        <ng-container matColumnDef="rate">
+          <mat-header-cell *matHeaderCellDef> Tarifa </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.get('rate').value}} </mat-cell>
+        </ng-container>
+
+        <!-- P1 Column -->
+        <ng-container matColumnDef="energy_prp1">
+          <mat-header-cell *matHeaderCellDef> Potencia P1 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp1" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <!-- P2 Column -->
+        <ng-container matColumnDef="energy_prp2">
+          <mat-header-cell *matHeaderCellDef> Potencia P2 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp2" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <!-- P3 Column -->
+        <ng-container matColumnDef="energy_prp3">
+          <mat-header-cell *matHeaderCellDef> Potencia P3 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp3" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <!-- P4 Column -->
+        <ng-container matColumnDef="energy_prp4">
+          <mat-header-cell *matHeaderCellDef> Potencia P4 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp4" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>
+
+        <!-- P5 Column -->
+        <ng-container matColumnDef="energy_prp5">
+          <mat-header-cell *matHeaderCellDef> Potencia P5 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp5" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>    
+
+        <!-- P6 Column -->
+        <ng-container matColumnDef="energy_prp6">
+          <mat-header-cell *matHeaderCellDef> Potencia P6 </mat-header-cell>
+          <mat-cell *matCellDef="let element;" [formGroup]="element">
+            <mat-form-field floatLabel="never">
+              <input matInput formControlName="energy_prp6" required>
+            </mat-form-field>
+          </mat-cell>
+        </ng-container>     
+
+        <!-- Trash Column -->                 
+        <ng-container matColumnDef="trash">
+          <mat-header-cell *matHeaderCellDef> Elim </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </ng-container>
+  </form>
+</div>
+
+<mat-card>
+  <form [formGroup]="insertForm">
+    <h2>Insercion</h2>
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Copiar a partir de</mat-label>
+        <mat-select formControlName="insert" required>
+          <mat-option *ngFor="let element of prices" [value]="element.id">
+            {{element.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Nuevo nombre" formControlName="nombre" required>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="button" (click)="onInsertar()">Insertar</button>
+  </form>
+</mat-card>

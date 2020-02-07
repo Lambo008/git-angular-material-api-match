@@ -1,0 +1,17 @@
+<h1>Impuesto electrico</h1>
+<mat-card>
+  <form [formGroup]="impuestoForm">
+    <mat-form-field>
+      <input matInput placeholder="Choose a date" [satDatepicker]="picker2" formControlName="date">
+      <sat-datepicker #picker2 [rangeMode]="true" [closeAfterSelection]="true">
+      </sat-datepicker>
+      <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+    </mat-form-field>
+    <div>
+      <mat-checkbox color="primary" formControlName="liquidableCheck">Generar liquidable</mat-checkbox>
+      <mat-checkbox color="primary" formControlName="calcularCheck">Calcular imp elec</mat-checkbox>
+      <mat-checkbox color="primary" formControlName="ficheroCheck">Generar fichero</mat-checkbox>
+    </div>
+  </form>
+  <button mat-raised-button color="primary" type="button" (click)="onBuscar()">Buscar</button>
+</mat-card>

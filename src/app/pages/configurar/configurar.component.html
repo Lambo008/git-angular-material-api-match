@@ -1,0 +1,97 @@
+<h1>Operations</h1>
+<mat-card>
+  <form [formGroup]="configurarForm">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Nombre" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="IBAN" formControlName="iban" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="BIC" formControlName="bic" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cta. Contable" formControlName="ccontable" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Bancos</mat-label>
+        <mat-select formControlName="bank"  multiple required>
+          <mat-option *ngFor="let bank of bankData" [value]="bank.id">{{bank.value}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="button" (click)="onGuardar()">Guardar</button>
+  </form>
+</mat-card>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="tableSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- IBAN Column -->
+    <ng-container matColumnDef="iban">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> IBAN </th>
+      <td mat-cell *matCellDef="let row"> {{row.iban}} </td>
+    </ng-container>
+
+    <!-- BIC Column -->
+    <ng-container matColumnDef="bic">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> BIC </th>
+      <td mat-cell *matCellDef="let row"> {{row.bic}} </td>
+    </ng-container>
+
+    <!-- Ccontable Column -->
+    <ng-container matColumnDef="ccontable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ccontable </th>
+      <td mat-cell *matCellDef="let row"> {{row.ccontable}} </td>
+    </ng-container>
+
+    <!-- Preferido Column -->
+    <ng-container matColumnDef="default">
+      <th mat-header-cell *matHeaderCellDef> Preferido </th>
+      <td mat-cell *matCellDef="let row" >
+        <mat-slide-toggle [checked]="row.default" color="primary"></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+    <!-- Bancos Column -->
+    <ng-container matColumnDef="banks">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bancos </th>
+      <td mat-cell *matCellDef="let row"> {{row.banks}} </td>
+    </ng-container>
+
+    <!-- Editar Column -->
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Editar </th>
+      <td mat-cell *matCellDef="let row"> {{row.editar}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

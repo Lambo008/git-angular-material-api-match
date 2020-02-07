@@ -1,0 +1,12 @@
+module.exports = {
+  "types": [
+    {
+      "id": 0,
+      "name": "Facturación"
+    },
+    {
+      "id": 1,
+      "name": "Periodo"
+    }
+  ]
+}

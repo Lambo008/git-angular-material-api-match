@@ -1,0 +1,12 @@
+<h1>Dimacon</h1>
+<mat-card>
+  <form [formGroup]="diamaconForm">
+    <mat-form-field>
+      <input matInput placeholder="Choose a date" [satDatepicker]="picker2" formControlName="date">
+      <sat-datepicker #picker2 [rangeMode]="true" [closeAfterSelection]="true">
+      </sat-datepicker>
+      <sat-datepicker-toggle matSuffix [for]="picker2" ></sat-datepicker-toggle>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button color="primary" type="button" (click)="onDiamacon()">Generar</button>
+</mat-card>

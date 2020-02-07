@@ -1,0 +1,20 @@
+{
+  "managers": [
+    {
+      "id": 500,
+      "manager": "George Lukas 1"
+    },
+    {
+      "id": 501,
+      "manager": "George Lukas 2"
+    },
+    {
+      "id": 502,
+      "manager": "George Lukas 3"
+    },
+    {
+      "id": 503,
+      "manager": "George Lukas 4"
+    }
+  ]
+}

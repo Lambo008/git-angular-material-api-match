@@ -1,0 +1,18 @@
+<h1>Subida de Cs</h1>
+<mat-card>
+  <form>
+    <button mat-stroked-button color="primary" type="button" (click)="filePicker1.click()"> Archivo a subir </button>
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader1" #filePicker1>
+    <button mat-raised-button color="primary" type="button" (click)="uploader1.uploadAll()"
+      [disabled]="!uploader1.getNotUploadedItems().length"> Enviar </button>
+  </form>
+</mat-card>
+
+<mat-card>
+  <form>
+    <button mat-stroked-button color="primary" type="button" (click)="filePicker2.click()"> Fichero ZIP con las perdidas no con otros ZIP </button>
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader2" #filePicker2>
+    <button mat-raised-button color="primary" type="button" (click)="uploader2.uploadAll()"
+      [disabled]="!uploader2.getNotUploadedItems().length"> Enviar </button>
+  </form>
+</mat-card>

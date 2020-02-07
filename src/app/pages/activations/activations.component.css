@@ -1,0 +1,25 @@
+button {
+  margin: 16px 8px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  margin-right: 8px;
+}
+
+checkbox-container {
+  display: flex;
+}
+
+mat-checkbox {
+  margin: 16px 8px;
+}
+
+table {
+  width: 100%;
+}
+

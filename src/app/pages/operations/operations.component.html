@@ -1,0 +1,110 @@
+<h1>Operations</h1>
+<mat-card>
+  <form [formGroup]="searchForm">
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Search" formControlName="searchText" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Managers</mat-label>
+        <mat-select formControlName="searchManagerText"  multiple required>
+          <mat-option *ngFor="let manager of searchManager" [value]="manager.id">{{manager.manager}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="searchStatusText" required>
+          <mat-option *ngFor="let status of searchStatus" [value]="status.id">
+            {{status.status}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="button" (click)="onSearch(searchForm)">Search</button>
+  </form>
+</mat-card>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Num Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Num </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <!-- Comercial Column -->
+    <ng-container matColumnDef="agent">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comercial </th>
+      <td mat-cell *matCellDef="let row"> {{row.agent}} </td>
+    </ng-container>
+
+    <!-- estado Column -->
+    <ng-container matColumnDef="modified">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> F.estado </th>
+      <td mat-cell *matCellDef="let row"> {{row.modified}} </td>
+    </ng-container>
+
+    <!-- CUPS Column -->
+    <ng-container matColumnDef="cups">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CUPS </th>
+      <td mat-cell *matCellDef="let row"> {{row.cups}} </td>
+    </ng-container>
+
+    <!-- Origen Column -->
+    <ng-container matColumnDef="marketer">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Origen </th>
+      <td mat-cell *matCellDef="let row"> {{row.marketer}} </td>
+    </ng-container>
+
+    <!-- Pernamece Column -->
+    <ng-container matColumnDef="permanence">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pernamece </th>
+      <td mat-cell *matCellDef="let row"> {{row.permanence}} </td>
+    </ng-container>
+
+    <!-- CIF Column -->
+    <ng-container matColumnDef="document">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CIF </th>
+      <td mat-cell *matCellDef="let row"> {{row.document}} </td>
+    </ng-container>
+
+    <!-- Empresa Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Empresa </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Tarifa Column -->
+    <ng-container matColumnDef="rate_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tarifa </th>
+      <td mat-cell *matCellDef="let row"> {{row.rate_id}} </td>
+    </ng-container>
+
+    <!-- MW Column -->
+    <ng-container matColumnDef="consumption">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MW </th>
+      <td mat-cell *matCellDef="let row"> {{row.consumption}} </td>
+    </ng-container>
+
+    <!-- Nivel Column -->
+    <ng-container matColumnDef="prlevel_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nivel </th>
+      <td mat-cell *matCellDef="let row"> {{row.prlevel_id}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let row"></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

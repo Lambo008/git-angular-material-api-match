@@ -1,0 +1,235 @@
+<h1>Precios Potencia y ATR</h1>
+
+<h2>Potencia</h2>
+<form [formGroup]="potenciaForm" autocomplete="off">
+  <ng-container formArrayName="potencia">
+    <mat-table class="mat-elevation-z8" [dataSource]="potencia.controls">
+
+      <!-- Tarifa Column -->
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef> Tarifa </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.get('rate').value}} </mat-cell>
+      </ng-container>
+
+      <!-- P1 Column -->
+      <ng-container matColumnDef="power_prp1">
+        <mat-header-cell *matHeaderCellDef> Potencia P1 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp1" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P2 Column -->
+      <ng-container matColumnDef="power_prp2">
+        <mat-header-cell *matHeaderCellDef> Potencia P2 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp2" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P3 Column -->
+      <ng-container matColumnDef="power_prp3">
+        <mat-header-cell *matHeaderCellDef> Potencia P3 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp3" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P4 Column -->
+      <ng-container matColumnDef="power_prp4">
+        <mat-header-cell *matHeaderCellDef> Potencia P4 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp4" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P5 Column -->
+      <ng-container matColumnDef="power_prp5">
+        <mat-header-cell *matHeaderCellDef> Potencia P5 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp5" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P6 Column -->
+      <ng-container matColumnDef="power_prp6">
+        <mat-header-cell *matHeaderCellDef> Potencia P6 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="power_prp6" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="potenciaDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: potenciaDisplayedColumns;"></mat-row>
+    </mat-table>
+  </ng-container>
+  <button mat-raised-button color="primary" type="button" (click)="onPotencia()">Guardar</button>
+</form>
+
+<h2>ATR</h2>
+<form [formGroup]="atrForm" autocomplete="off">
+  <ng-container formArrayName="atr">
+    <mat-table class="mat-elevation-z8" [dataSource]="atr.controls">
+
+      <!-- Tarifa Column -->
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef> Tarifa </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.get('rate').value}} </mat-cell>
+      </ng-container>
+
+      <!-- P1 Column -->
+      <ng-container matColumnDef="energy_prp1">
+        <mat-header-cell *matHeaderCellDef> Energia P1 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp1" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P2 Column -->
+      <ng-container matColumnDef="energy_prp2">
+        <mat-header-cell *matHeaderCellDef> Energia P2 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp2" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P3 Column -->
+      <ng-container matColumnDef="energy_prp3">
+        <mat-header-cell *matHeaderCellDef> Energia P3 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp3" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P4 Column -->
+      <ng-container matColumnDef="energy_prp4">
+        <mat-header-cell *matHeaderCellDef> Energia P4 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp4" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P5 Column -->
+      <ng-container matColumnDef="energy_prp5">
+        <mat-header-cell *matHeaderCellDef> Energia P5 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp5" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P6 Column -->
+      <ng-container matColumnDef="energy_prp6">
+        <mat-header-cell *matHeaderCellDef> Energia P6 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp6" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="atrDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: atrDisplayedColumns;"></mat-row>
+    </mat-table>
+  </ng-container>
+  <button mat-raised-button color="primary" type="button" (click)="onAtr()">Guardar</button>
+</form>
+
+<h2>Precio Base</h2>
+<form [formGroup]="baseForm" autocomplete="off">
+  <ng-container formArrayName="base">
+    <mat-table class="mat-elevation-z8" [dataSource]="base.controls">
+
+      <!-- Tarifa Column -->
+      <ng-container matColumnDef="rate">
+        <mat-header-cell *matHeaderCellDef> Tarifa </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.get('rate').value}} </mat-cell>
+      </ng-container>
+
+      <!-- P1 Column -->
+      <ng-container matColumnDef="energy_prp1">
+        <mat-header-cell *matHeaderCellDef> Energia P1 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp1" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P2 Column -->
+      <ng-container matColumnDef="energy_prp2">
+        <mat-header-cell *matHeaderCellDef> Energia P2 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp2" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P3 Column -->
+      <ng-container matColumnDef="energy_prp3">
+        <mat-header-cell *matHeaderCellDef> Energia P3 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp3" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P4 Column -->
+      <ng-container matColumnDef="energy_prp4">
+        <mat-header-cell *matHeaderCellDef> Energia P4 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp4" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P5 Column -->
+      <ng-container matColumnDef="energy_prp5">
+        <mat-header-cell *matHeaderCellDef> Energia P5 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp5" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- P6 Column -->
+      <ng-container matColumnDef="energy_prp6">
+        <mat-header-cell *matHeaderCellDef> Energia P6 </mat-header-cell>
+        <mat-cell *matCellDef="let element;" [formGroup]="element">
+          <mat-form-field floatLabel="never">
+            <input matInput formControlName="energy_prp6" required>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="baseDisplayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: baseDisplayedColumns;"></mat-row>
+    </mat-table>
+  </ng-container>
+  <button mat-raised-button color="primary" type="button" (click)="onBase()">Guardar</button>
+</form>

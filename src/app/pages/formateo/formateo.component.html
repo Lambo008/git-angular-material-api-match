@@ -1,0 +1,9 @@
+<h1>Formateo VIESGO</h1>
+<mat-card>
+  <form>
+    <button mat-stroked-button color="primary" type="button" (click)="filePicker.click()"> Archivo a subir </button>
+    <input type="file" name="file" ng2FileSelect [uploader]="uploader" #filePicker>
+    <button mat-raised-button color="primary" type="button" (click)="uploader.uploadAll()"
+      [disabled]="!uploader.getNotUploadedItems().length"> Enviar </button>
+  </form>
+</mat-card>
